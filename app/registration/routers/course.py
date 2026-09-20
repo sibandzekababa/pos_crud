@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from schemas.corvse import Course
-import services.course as service
+from OOPs.project.app.registration.schemas.course import Course
+import OOPs.project.app.registration.services.course as service
 
 router = APIRouter(prefix="/courses", tags=["Courses"])
 

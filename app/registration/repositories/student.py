@@ -1,29 +1,40 @@
-from database import get_db_connection
+from OOPs.project.app.registration.database import get_db_connection
 
-def add_teacher(name, email, department, salary, id_number):
+def add_student(name, age, email, country, id_number):
     with get_db_connection() as connection:
-        connection.execute(
-            "INSERT INTO teachers (name, email, department, salary, id_number) VALUES (?, ?, ?, ?, ?)",
-            (name, email, department, salary, id_number),
-        )
-        connection.commit()
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                INSERT INTO students (name, age, email, country, id_number) 
+                VALUES (%s, %s, %s, %s, %s);
+                """,
+                (name, age, email, country, id_number)
+            )
+            connection.commit()
 
-def get_teachers():
+def get_students():
     with get_db_connection() as connection:
-        rows = connection.execute("SELECT * FROM teachers").fetchall()
-        return [dict(row) for row in rows]
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM students;")
+            return cursor.fetchall()
 
-def update_teacher(teacher_id, name, email, department, salary, id_number):
+def update_student(student_id, name, age, email, country, id_number):
     with get_db_connection() as connection:
-        cursor = connection.execute(
-            "UPDATE teachers SET name=?, email=?, department=?, salary=?, id_number=? WHERE id=?",
-            (name, email, department, salary, id_number, teacher_id)
-        )
-        connection.commit()
-        return cursor.rowcount > 0
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                UPDATE students 
+                SET name = %s, age = %s, email = %s, country = %s, id_number = %s 
+                WHERE id = %s;
+                """,
+                (name, age, email, country, id_number, student_id)
+            )
+            connection.commit()
+            return True
 
-def delete_teacher(teacher_id):
+def delete_student(student_id):
     with get_db_connection() as connection:
-        cursor = connection.execute("DELETE FROM teachers WHERE id = ?", (teacher_id,))
-        connection.commit()
-        return cursor.rowcount > 0
+        with connection.cursor() as cursor:
+            cursor.execute("DELETE FROM students WHERE id = %s;", (student_id,))
+            connection.commit()
+            return True

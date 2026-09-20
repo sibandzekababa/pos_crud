@@ -1,5 +1,5 @@
-from schemas.teacher import Teacher
-import repositories.teacher as repo
+from OOPs.project.app.registration.schemas.teacher import Teacher
+import OOPs.project.app.registration.repositories.teacher as repo
 
 def register_teacher(teacher: Teacher):
     repo.add_teacher(teacher.name, teacher.email, teacher.department, teacher.salary, teacher.id_number)

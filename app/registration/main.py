@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from database import create_table
-from routers.student import router as student_router
-from routers.teachers import router as teacher_router
-from routers.course import router as course_router
+from OOPs.project.app.registration.database import create_table
+from OOPs.project.app.registration.routers.student import router as student_router
+from OOPs.project.app.registration.routers.teachers import router as teacher_router
+from OOPs.project.app.registration.routers.course import router as course_router
 
 app = FastAPI()
 

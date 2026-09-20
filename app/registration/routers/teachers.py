@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from schemas.teacher import Teacher
-import services.teacher as service
+from OOPs.project.app.registration.schemas.teacher import Teacher
+import OOPs.project.app.registration.services.teacher as service
 
 router = APIRouter(prefix="/teachers", tags=["Teachers"])
 

@@ -1,5 +1,5 @@
-from schemas.student import Student
-import repositories.student as repo
+from OOPs.project.app.registration.schemas.student import Student
+import OOPs.project.app.registration.repositories.student as repo
 
 def register_student(student: Student):
     repo.add_student(student.name, student.age, student.email, student.country, student.id_number)

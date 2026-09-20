@@ -1,5 +1,5 @@
-from schemas.corvse import Course
-import repositories.corvse as repo
+from OOPs.project.app.registration.schemas.course import Course
+import OOPs.project.app.registration.repositories.course as repo
 
 def register_course(course: Course):
     repo.add_course(course.title, course.code, course.credits, course.department, course.max_capacity)
