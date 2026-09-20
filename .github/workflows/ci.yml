@@ -18,14 +18,16 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.10'
-        cache: 'pip'
 
     - name: Install framework requirements and dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest httpx sqlalchemy fastapi pydantic passlib[bcrypt] python-jose[cryptography] python-multipart PyJWT pwdlib
+        pip install pytest httpx sqlalchemy fastapi pydantic passlib[bcrypt] python-jose[cryptography] python-multipart PyJWT "pwdlib[argon2]"
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f app/pos/requirements.txt ]; then pip install -r app/pos/requirements.txt; fi
+        if [ -f app/pos/app/requirements.txt ]; then pip install -r app/pos/app/requirements.txt; fi
 
     - name: Execute automated unit test suite with path mapping
       run: |
+        cd app/pos/app
         PYTHONPATH=. python3 -m pytest -v
