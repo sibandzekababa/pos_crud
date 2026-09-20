@@ -1,0 +1,6 @@
+# Extra dependencies needed only to run the test suite.
+# Install alongside the runtime requirements:
+#   pip install -r requirements -r requirements-dev.txt
+-r requirements
+pytest==9.1.1
+pytest-cov==7.1.0
