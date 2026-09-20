@@ -29,5 +29,5 @@ jobs:
 
     - name: Execute automated unit test suite with path mapping
       run: |
-        cd app/pos/app
-        PYTHONPATH=. python3 -m pytest -v
+        cd app/pos
+        PYTHONPATH=. python3 -m pytest -v app/
